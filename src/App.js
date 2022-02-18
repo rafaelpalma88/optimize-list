@@ -23,14 +23,14 @@ export default function App() {
         }
 
         setArray(array);
-        setArrayFiltered(array);
     }
 
     const filterArray = (filter) => {
 
-        const response = array.filter(item => Number(item).includes(Number(filter)))
-        // console.log('response xxx', response)
-        // terminar a parte do filtro
+        const result = array
+            .filter((item) => String(item).includes(filter))
+
+        setArrayFiltered(result);
         
     }
 
@@ -45,10 +45,18 @@ export default function App() {
 
             <ul>
                     {
-                       arrayFiltered
-                            .map(item => (
-                                <li key={item}>Item: {item}</li>
-                            ))
+                        filter === '' ? (
+                            array
+                                .map(item => (
+                                    <li key={item}>Item: {item}</li>
+                                ))
+                        ) : (
+                            arrayFiltered
+                                .map(item => (
+                                    <li key={item}>Item: {item}</li>
+                                ))
+                        )
+                      
                     }
             </ul>
 
